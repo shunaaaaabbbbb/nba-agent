@@ -1,0 +1,45 @@
+name: python-code-quality
+
+on:
+  pull_request:
+    paths:
+      - "**"
+  push:
+    branches: ["main"]
+    paths:
+      - "**"
+
+jobs:
+  pre-commit:
+    name: Run pre-commit checks and mypy
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: .
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Install dependencies with uv
+        run: uv sync --all-groups
+
+      - name: Run pre-commit hooks
+        run: uv run pre-commit run --all-files
+
+      - name: Run mypy for specific directories
+
+        run: |
+          uv run mypy src
