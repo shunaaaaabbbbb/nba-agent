@@ -1,0 +1,63 @@
+target-version = "py310"
+line-length = 119
+src = ["python/sales", "python/manufacture"]
+exclude = [".venv"]
+include = ["*.py"]
+
+[lint]
+ignore = ["W292", "W291"]
+select = [
+    "F",    # Pyflakes: 未使用のインポートや未使用の変数などを検出
+    "E",    # pycodestyle: PEP 8に準拠したスタイルガイドのエラー（例：インデント、行の長さ）
+    "W",    # pycodestyle: PEP 8に準拠したスタイルガイドの警告
+    "C",    # mccabe: サイクロマティック複雑度のチェック
+    "I",    # isort: インポート順序の管理
+    "N",    # PEP 8 Naming: 命名規則のチェック
+    "UP",   # flake8-use-pathlib: pathlibの使用を推奨
+    "ERA",  # flake8-eradicate: コメントアウトされたコードの検出
+    "PD",   # pandas-vet: Pandasに特化したルール
+    "TRY",  # flake8-tryceratops: try-except文の改善
+    "FLY",  # flynt: f-stringの使用を推奨
+    "NPY",  # numpy: NumPyに特化したルール
+    "FURB", # flake8-bugbear: 潜在的なバグやコード品質の問題を検出
+    "RUF",  # ruff: Ruff自身のルール
+]
+fixable = [
+    "F",    # Pyflakes
+    "E",    # pycodestyle
+    "W",    # pycodestyle
+    "C",    # mccabe
+    "I",    # isort
+    "N",    # PEP 8 Naming
+    "UP",   # flake8-use-pathlib
+    "ERA",  # flake8-eradicate
+    "PD",   # pandas-vet
+    "TRY",  # flake8-tryceratops
+    "FLY",  # flynt
+    "NPY",  # numpy
+    "FURB", # flake8-bugbear
+    "RUF",  # ruff
+]
+
+[lint.mccabe]
+max-complexity = 20
+
+[lint.isort]
+combine-as-imports = true
+known-first-party = ["musubi_restapi"]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+split-on-trailing-comma = true
+
+[lint.flake8-bugbear]
+extend-immutable-calls = [
+    "fastapi.Depends",
+    "fastapi.params.Depends",
+    "fastapi.Query",
+    "fastapi.params.Query",
+]
