@@ -13,7 +13,7 @@ def plot_stats_trend_tool(
     stats_df: Annotated[str, "JSON string of player stats data"],
 ) -> str:
     """
-    Plot the trend of a player's stats over time. 折れ線グラフを作成してファイルに保存する
+    Plot the trend of a player's stats over time.
     """
     try:
         # JSON文字列をDataFrameに変換

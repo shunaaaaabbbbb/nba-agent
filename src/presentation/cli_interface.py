@@ -1,4 +1,3 @@
-import asyncio
 import os
 
 from ..services.ai_services import LangChainAgentService
@@ -45,19 +44,3 @@ class CLIInterface:
             except Exception as e:
                 print(f"\n❌ エラーが発生しました: {e}")
                 print("もう一度お試しください。")
-
-
-async def main():
-    """メイン関数"""
-    try:
-        cli = CLIInterface()
-        await cli.run()
-    except ValueError as e:
-        print(f"設定エラー: {e}")
-        print("OPENAI_API_KEY環境変数を設定してください。")
-    except Exception as e:
-        print(f"予期しないエラーが発生しました: {e}")
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
