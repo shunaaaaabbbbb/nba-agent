@@ -21,8 +21,6 @@ def main():
         asyncio.run(CLIInterface().run())
     except ValueError as e:
         print(f"設定エラー: {e}")
-        print("OPENAI_API_KEY環境変数を設定してください。")
-        print("例: export OPENAI_API_KEY=your_api_key_here")
     except KeyboardInterrupt:
         print("\n\nNBA AI Agentを終了します。お疲れ様でした!")
     except Exception as e:
