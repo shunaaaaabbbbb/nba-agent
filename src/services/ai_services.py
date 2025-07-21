@@ -1,10 +1,8 @@
-from typing import Annotated
-
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain.chat_models import init_chat_model
 from langchain.prompts import ChatPromptTemplate
-from langchain.tools import StructuredTool
-from nba_api.stats.endpoints.leaguedashplayerstats import LeagueDashPlayerStats
+
+from src.tools import TOOLS
 
 
 class LangChainAgentService:
@@ -16,25 +14,7 @@ class LangChainAgentService:
 
     def _setup_agent(self):
         """エージェントをセットアップ"""
-
-        def calling_nba_api_tool(
-            player_name: Annotated[str, "e.g. LeBron James"], season: Annotated[str, "e.g. 2024-25"]
-        ) -> str:
-            """
-            Get NBA stats for a player by name and season.
-            """
-            # 全選手のシーズンスタッツを取得
-            stats = LeagueDashPlayerStats(season=season, per_mode_detailed="PerGame").get_data_frames()[0]
-
-            # 指定選手名で絞り込み
-            player_stats = stats[stats["PLAYER_NAME"].str.lower() == player_name.lower()]
-
-            if player_stats.empty:
-                return f"No stats found for {player_name} in {season}."
-
-            return player_stats.to_string(index=False)
-
-        tools = [StructuredTool.from_function(calling_nba_api_tool)]
+        tools = TOOLS
 
         prompt = ChatPromptTemplate.from_messages(
             [
