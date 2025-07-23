@@ -12,7 +12,7 @@ TOOLS = [
     ),
     StructuredTool.from_function(
         calling_player_all_seasons_tool,
-        description="Get NBA career totals and stats for all seasons for a player by player ID. Use this when asked about a player's career statistics or trends over multiple seasons.Unless specifically requested otherwise, calculate averages by dividing stats by GP (Games Played) column. When asked for total stats, output them as-is.",  # noqa: E501
+        description="Get NBA career stats for all seasons for a player by player ID. Use this when asked about a player's career statistics or trends over multiple seasons.",  # noqa: E501
     ),
     StructuredTool.from_function(
         get_player_id_tool,

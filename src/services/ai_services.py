@@ -56,7 +56,7 @@ class LangChainAgentService:
             ]
         )
 
-        model = init_chat_model("gpt-4o", model_provider="openai")
+        model = init_chat_model("gpt-3.5-turbo", model_provider="openai")
 
         agent = create_tool_calling_agent(model, tools, prompt)
 

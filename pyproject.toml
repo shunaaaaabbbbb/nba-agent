@@ -17,4 +17,5 @@ dependencies = [
     "python-dotenv>=1.0.0",
     "httpx>=0.25.0",
     "plotly>=6.2.0",
+    "streamlit>=1.47.0",
 ]
