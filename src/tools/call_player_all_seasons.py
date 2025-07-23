@@ -4,7 +4,9 @@ from typing import Annotated
 from nba_api.stats.endpoints import PlayerCareerStats
 
 
-def calling_player_all_seasons_tool(player_id: Annotated[str, "e.g. 237"]) -> str:
+def calling_player_all_seasons_tool(
+    player_id: Annotated[str, "e.g. 237"], stats_type_list: Annotated[list[str], "e.g. ['PTS', 'REB', 'AST']"]
+) -> str:
     """
     Get NBA career totals for regular season stats for a player by player ID.
     """
@@ -13,6 +15,8 @@ def calling_player_all_seasons_tool(player_id: Annotated[str, "e.g. 237"]) -> st
 
     # CareerTotalsRegularSeasonのみを取得
     career_totals = player_stats.get_data_frames()[0]
+    # TODO: シーズンIDをどうにかする
+    career_totals = career_totals[stats_type_list]
 
     if career_totals.empty:
         return f"No career totals found for player ID {player_id}."
