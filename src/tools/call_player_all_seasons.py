@@ -5,13 +5,14 @@ from nba_api.stats.endpoints import PlayerCareerStats
 
 
 def calling_player_all_seasons_tool(
-    player_id: Annotated[str, "e.g. 237"], stats_type_list: Annotated[list[str], "e.g. ['PTS', 'REB', 'AST']"]
+    player_id: Annotated[str, "e.g. 237"],
+    stats_type_list: Annotated[list[str], "e.g. ['SEASON_ID', 'PTS', 'REB', 'AST']"],
 ) -> str:
     """
     Get NBA career totals for regular season stats for a player by player ID.
     """
     # PlayerCareerStatsオブジェクトを作成
-    player_stats = PlayerCareerStats(player_id=player_id)
+    player_stats = PlayerCareerStats(player_id=player_id, per_mode36="PerGame")
 
     # CareerTotalsRegularSeasonのみを取得
     career_totals = player_stats.get_data_frames()[0]
