@@ -6,7 +6,6 @@ readme = "README.md"
 requires-python = ">=3.11.9"
 dependencies = [
     "mypy>=1.17.0",
-    "pre-commit>=4.2.0",
     "ruff>=0.12.3",
     "types-setuptools>=80.9.0.20250529",
     "langchain>=0.1.0",
@@ -18,4 +17,14 @@ dependencies = [
     "httpx>=0.25.0",
     "plotly>=6.2.0",
     "streamlit>=1.47.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "pre-commit>=4.3.0",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.3.0",
 ]

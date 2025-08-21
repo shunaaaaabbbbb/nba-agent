@@ -2,6 +2,7 @@ from langchain_core.tools import StructuredTool
 
 from src.tools.call_player_all_seasons import calling_player_all_seasons_tool
 from src.tools.call_player_one_season import calling_player_one_season_tool
+from src.tools.compare_two_players import compare_two_players_tool
 from src.tools.get_player_id_tool import get_player_id_tool
 from src.tools.plot_stats_trend_tool import plot_stats_trend_tool
 
@@ -21,5 +22,9 @@ TOOLS = [
     StructuredTool.from_function(
         plot_stats_trend_tool,
         description="Create a line chart showing the trend of a player's specific stat over multiple seasons. Use this when asked to visualize or show trends in a player's performance over time.",  # noqa: E501
+    ),
+    StructuredTool.from_function(
+        compare_two_players_tool,
+        description="Compare two players' stats via some charts or graphs by code inpterpreter of OpenAI. Use this when asked about a comparison of two players' stats.",  # noqa: E501
     ),
 ]
