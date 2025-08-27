@@ -41,6 +41,7 @@ class PlayerStats(BaseModel):
 
 class PlayerSeasonStats(BaseModel):
     """シーズン別の選手統計データを表すモデル"""
+
     PLAYER_ID: float = Field(ge=0)
     SEASON_ID: str
     LEAGUE_ID: str
@@ -68,4 +69,3 @@ class PlayerSeasonStats(BaseModel):
     TOV: float = Field(ge=0)
     PF: float = Field(ge=0)
     PTS: float = Field(ge=0)
-

@@ -29,7 +29,7 @@ def calling_player_all_seasons_tool(
         for col in career_totals.columns:
             value = row[col]
             # 数値の場合は小数点以下2桁に制限
-            if isinstance(value, int|float):
+            if isinstance(value, int | float):
                 season_data[col] = round(float(value), 2)
             else:
                 season_data[col] = value
